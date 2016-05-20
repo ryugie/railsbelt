@@ -1,0 +1,65 @@
+<h1>Registration Page</h1>
+
+<form action='/lenders' method='POST'>
+	<fieldset>
+		<legend>Lender</legend>
+		<label for='First Name'>First Name:</label> <input type='text' name='lender[first_name]' id='First Name'> <br>
+		<label for='Last Name'>Last Name:</label> <input type='text' name='lender[last_name]' id='Last Name'> <br>
+		<label for='Email'>Email Addy:</label> <input type='email' name='lender[email]' id='Email'> <br>
+		<label for='Password'>Password:</label> <input type='password' name='lender[password]' id='Password'> <br>
+		<label for='Password_Confirmation'>Confirm:</label> <input type='password' name='lender[password_confirmation]' id='Password_Confirmation'> <br>
+		<label for='Money'>Money:</label> <input type='number' name='lender[money]' id='Money' min="1"> <br>
+		<input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'> <br>
+		<a href="/login">Already a member?</a>
+		<button type="submit" value="Register">Register</button>
+	</fieldset>
+</form>
+
+<form action='/borrowers' method='POST'>
+	<fieldset>
+		<legend>Borrower</legend>
+		<label for='First Name'>First Name:</label> <input type='text' name='borrower[first_name]' id='First Name'> <br>
+		<label for='Last Name'>Last Name:</label> <input type='text' name='borrower[last_name]' id='Last Name'> <br>
+		<label for='Email'>Email Addy:</label> <input type='email' name='borrower[email]' id='Email'> <br>
+		<label for='Password'>Password:</label> <input type='password' name='borrower[password]' id='Password'> <br>
+		<label for='Password_Confirmation'>Confirm:</label> <input type='password' name='borrower[password_confirmation]' id='Password_Confirmation'> <br>
+		<label for='Purpose'>Need Money For:</label> <input type='text' name='borrower[purpose]' id='Purpose'> <br>
+		<label for='Description'>Description:</label> <input type='text' name='borrower[description]' id='Description'> <br>
+		<label for='Money'>Amount Needed:</label> <input type='number' name='borrower[money]' id='Money' min="0"> <br>
+		<input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'> <br>
+		<a href="/login">Already a member?</a>
+		<button type="submit" value="Register">Register</button>
+	</fieldset>
+</form>
+
+<hr>
+
+<ul>
+<% if flash[:errors] %>
+	<% flash[:errors].each do |f| %>
+		<li><%= f %></li>
+	<% end %>
+<% end %>
+</ul>
+
+
+
+<style type="text/css">
+	h1 {
+		font-style: italic;
+	}
+	form {
+		display: inline-block;
+		vertical-align: top;
+	}
+	button {
+		background: none;
+		width: 75px;
+		border-radius: 3px;
+		border: 1px solid #ccc;
+	}
+	legend {
+		font-weight: bold;
+		color: gray;
+	}
+</style>

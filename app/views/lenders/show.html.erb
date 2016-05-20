@@ -1,0 +1,79 @@
+<h1>Your Lending Page</h1>
+
+Name: <%= current_user.first_name %><br>
+Acct Balance: <%= current_user.money %><br>
+
+<% if flash[:funds] %>
+	<h3><%= flash[:funds] %></h3>
+<% end %>
+
+<hr>
+
+<h3>List of people in need of help:</h3>
+
+<table border='3'>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Need Money for</th>
+			<th>Reason for Loan</th>
+			<th>Amount Needed</th>
+			<th>Amount Raised</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @help.each do |h|  %>
+			<tr>
+				<th><%= h.first_name %> <%= h.last_name %></th>
+				<th><%= h.purpose %></th>
+				<th><%= h.description %></th>
+				<th><%= h.money %></th>
+				<th>
+					<% if h.raised %>
+						<%= h.raised %>
+					<% end %>
+				</th>
+				<th>
+					<form action='/histories' method='POST'>
+						<input name='lendamount' type='number' min="0"/>
+						<button type='submit'>Lend</button>
+						<input type="hidden" name="lendee" value='<%= h.id %>'>
+						<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+					</form>
+				</th>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h3>List of people you lent money to:</h3>
+
+<table border='3'>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Need Money for</th>
+			<th>Reason for Loan</th>
+			<th>Amount Needed</th>
+			<th>Amount Raised</th>
+			<th>Amount Lent</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @lent.each do |x|  %>
+			<tr>
+				<th><%= x.bf_name %> <%= x.bl_name %></th>
+				<th><%= x.purpose %></th>
+				<th><%= x.description %></th>
+				<th><%= x.b_money %></th>
+				<th>
+					<% if x.raised %>
+						<%= x.raised %>
+					<% end %>
+				</th>
+				<th><%= x.amount %></th>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

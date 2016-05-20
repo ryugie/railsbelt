@@ -1,0 +1,33 @@
+<h1>Login Page</h1>
+
+<form action='/sessions' method='POST'>
+	<fieldset>
+		<legend>Login</legend>
+		<label for='Email'>Email:</label> <input type='email' name='email' id='Email' autofocus> <br>
+		<label for='Password'>Password:</label> <input type='password' name='password' id='Password'> <br>
+		<input type="hidden" name='authenticity_token' value='<%= form_authenticity_token %>'> <br>
+		<button type="submit" value="Login">Login</button>
+	</fieldset>
+</form>
+
+<hr>
+
+<style type="text/css">
+	h1 {
+		font-style: italic;
+	}
+	form {
+		display: inline-block;
+		vertical-align: top;
+	}
+	button {
+		background: none;
+		width: 75px;
+		border-radius: 3px;
+		border: 1px solid #ccc;
+	}
+	legend {
+		font-weight: bold;
+		color: gray;
+	}
+</style>

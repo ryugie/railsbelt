@@ -1,0 +1,31 @@
+<h1>Your Borrowing Page</h1>
+
+Name: <%= current_user.first_name %><br>
+Amount Need: <%= current_user.money %><br>
+Amount Raised: <%= current_user.raised %><br>
+
+
+<hr>
+
+<h3>List of people who lent you money:</h3>
+
+<table border='3'>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Amount Lent</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if @lent %>
+			<% @lent.each do |m| %>
+			<tr>
+				<th><%= m.bf_name %> <%= m.bl_name %></th>
+				<th><%= m.lemail %></th>
+				<th><%= m.amount %></th>
+			</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
